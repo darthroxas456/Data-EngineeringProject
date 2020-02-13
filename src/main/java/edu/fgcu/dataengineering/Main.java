@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Iterator;
 
 public class Main {
 
@@ -52,8 +53,7 @@ public class Main {
           (JsonObject) jsonParser.parse(new FileReader("src/Data/authors.json"));
 
       // gets the array
-      JsonArray jsonArray = jsonObject.getAsJsonArray("authors");
-      JsonArray jsonArray2 = (JsonArray) jsonObject.get("authors");
+        JsonArray jsonArray = jsonObject.getAsJsonArray("authors");
 
       // connects to Database
       BookStoreDB.dbConnect();
@@ -71,7 +71,7 @@ public class Main {
         pstmt.setString(3, authorURL);
         pstmt.executeUpdate();
       }
-      System.out.println("the DB has been read and sent to the Json File");
+      System.out.println("the DB has been read and copied to the Json File");
     } catch (FileNotFoundException | SQLException e) {
       e.printStackTrace();
     }
